@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactInfo from './ContactInfo';
+import ContactDetails from './ContactDetails';
 
 export default class Contact extends React.Component {
 
@@ -49,7 +50,7 @@ export default class Contact extends React.Component {
         return (<ContactInfo
           contact={contact}
           key={i}
-          onclick={() => {console.log('A')}} />);
+          onClick={() => this.handleClick(i)}/>);
       });
     };
 
@@ -63,6 +64,9 @@ export default class Contact extends React.Component {
           onChange={this.handleChange}
         />
         <div>{mapToComponents(this.state.contactData)}</div>
+        <ContactDetails
+          isSelected={this.state.selectedKey != -1}
+          contact={this.state.contactData[this.state.selectedKey]}/>
       </div>
     );
   }
